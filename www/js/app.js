@@ -9,7 +9,7 @@ angular.module('starter', ['ionic',
   .controller("LineCtrl",['$scope', '$http', function ($scope, $http) {
     //http://codetunnel.io/how-to-do-loading-spinners-the-angular-way/
 
-    $scope.loading = true;
+
 
     $scope.stopLoading = function () {
       $scope.loading = false;
@@ -83,6 +83,9 @@ angular.module('starter', ['ionic',
         [$scope.weekRateC[0], $scope.weekRateC[1], $scope.weekRateC[2],
           $scope.weekRateC[3], $scope.weekRateC[4], $scope.weekRateC[5], $scope.weekRateC[6]]
       ];
+      if ($scope.weekRateC[5] !== undefined) {
+        $scope.loadingFinished();
+      }
     }
     else if (x === undefined) {
       $scope.weekRateC.push($scope.newArr[0].saleRateNB);
@@ -94,6 +97,9 @@ angular.module('starter', ['ionic',
         [$scope.weekRateG[0], $scope.weekRateG[1], $scope.weekRateG[2],
           $scope.weekRateG[3], $scope.weekRateG[4], $scope.weekRateG[5], $scope.weekRateG[6]]
       ];
+      if ($scope.weekRateC[5] !== undefined) {
+        $scope.loadingFinished();
+      }
     }
     else if (y === undefined) {
       $scope.weekRateC.push($scope.newArr[0].saleRateNB);
@@ -108,6 +114,9 @@ angular.module('starter', ['ionic',
         [$scope.weekRateU[0], $scope.weekRateU[1], $scope.weekRateU[2],
           $scope.weekRateU[3], $scope.weekRateU[4], $scope.weekRateU[5], $scope.weekRateU[6]]
       ];
+      if ($scope.weekRateC[5] !== undefined) {
+        $scope.loadingFinished();
+      }
     }
     else if (y) {
       $scope.weekRateC.push($scope.newArr[0].saleRateNB);
@@ -128,7 +137,9 @@ angular.module('starter', ['ionic',
         [$scope.weekRateE[0], $scope.weekRateE[1], $scope.weekRateE[2],
           $scope.weekRateE[3], $scope.weekRateE[4], $scope.weekRateE[5], $scope.weekRateE[6]]
       ];
-      console.log($scope.data);
+      if ($scope.weekRateC[5] !== undefined) {
+        $scope.loadingFinished();
+      }
     }
   };
 
@@ -169,7 +180,35 @@ angular.module('starter', ['ionic',
     });
   };
 
+  $scope.loadingInProgress = function () {
+    $scope.loading = true;
+    document.getElementById("myBtn").disabled = true;
+    document.getElementById("myBtn1").disabled = true;
+    document.getElementById("myBtn2").disabled = true;
+    document.getElementById("bodyElement").style.background = "rgba(0,0,0,.3)";
+    document.getElementById("mySpinner").style.zIndex = "1000";
+    document.getElementById("cb1").disabled = true;
+    document.getElementById("cb2").disabled = true;
+    document.getElementById("cb3").disabled = true;
+    document.getElementById("cb4").disabled = true;
+  };
+
+  $scope.loadingFinished = function () {
+    $scope.loading = false;
+    document.getElementById("myBtn").disabled = false;
+    document.getElementById("myBtn1").disabled = false;
+    document.getElementById("myBtn2").disabled = false;
+    document.getElementById("bodyElement").style.background = "white";
+    document.getElementById("cb1").disabled = false;
+    document.getElementById("cb2").disabled = false;
+    document.getElementById("cb3").disabled = false;
+    document.getElementById("cb4").disabled = false;
+
+  };
+
   $scope.getWeekRate = function () {
+    $scope.loadingInProgress();
+
     $scope.weekRateC = [];
     $scope.weekRateG = [];
     $scope.weekRateU = [];
@@ -215,6 +254,7 @@ angular.module('starter', ['ionic',
     for (var y = 5; y < 11; y++){
       $scope.getWeekData(y);
     }
+
     $scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   };
 

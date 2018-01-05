@@ -18,6 +18,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -42,23 +43,22 @@
   </head>
   <body ng-app="starter">
   <script>preloaderCSS3("Loading application... Please wait");</script>
-
-    <ion-pane>
+    <ion-pane id="bodyElement">
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Chart Application</h1>
       </ion-header-bar>
       <ion-content ng-controller="LineCtrl">
         <label>CAD
-          <input type="checkbox" ng-model="cbMod.val1">
+          <input type="checkbox" id="cb1" ng-model="cbMod.val1">
         </label>
         <label>GBP
-          <input type="checkbox" ng-model="cbMod.val2">
+          <input type="checkbox" id="cb2" ng-model="cbMod.val2">
         </label>
         <label>USD
-          <input type="checkbox" ng-model="cbMod.val3">
+          <input type="checkbox" id="cb3" ng-model="cbMod.val3">
         </label>
         <label>EUR
-          <input type="checkbox" ng-model="cbMod.val4">
+          <input type="checkbox" id="cb4" ng-model="cbMod.val4">
         </label>
 
         <canvas id="line" class="chart chart-line" chart-data="data"
@@ -67,17 +67,15 @@
         </canvas>
 
         <span>
-        <button class="button" ng-click="getTodayRate()">Today</button>
+        <button class="button" id="myBtn2" ng-click="getTodayRate()">Today</button>
         </span><span>
-        <button class="button" ng-click="getWeekRate()" ng-cloak>Last week</button>
+        <button class="button" id="myBtn" ng-click="getWeekRate()">Last week</button>
         </span><span>
-        <button class="button" ng-click="getMonthRate()">Last month</button>
+        <button class="button" id="myBtn1" ng-click="getMonthRate()">Last month</button>
         </span>
-        <span><img id="mySpinner" src="img/spinner.gif" ng-show="loading" /></span>
-        <span>
-            <button class="button" ng-click="stopLoading()">Stop</button>
-            </span>
-
+            <!--<img id="mySpinner" src="img/spinner.gif" class="spinnerImg" ng-show="loading"/>-->
+            <ion-spinner id="mySpinner" class="spinnerImg" ng-show="loading"></ion-spinner>
+            <h1 ng-show="loading">Loading, please wait...</h1>
       </ion-content>
     </ion-pane>
   </body>
