@@ -5,7 +5,15 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic',
   'chart.js'
-]).controller("LineCtrl",['$scope', '$http', function ($scope, $http) {
+])
+  .controller("LineCtrl",['$scope', '$http', function ($scope, $http) {
+    //http://codetunnel.io/how-to-do-loading-spinners-the-angular-way/
+
+    $scope.loading = true;
+
+    $scope.stopLoading = function () {
+      $scope.loading = false;
+    };
 
   $scope.users = [];
   $scope.filterArr = [];
@@ -140,7 +148,7 @@ angular.module('starter', ['ionic',
         && $scope.cbMod.val3 === true) {
         $scope.selectCur(0, 1, 2);
       }
-      else if ($scope.cbMod.vall === true && $scope.cbMod.val2 === true) {
+      else if ($scope.cbMod.val1 === true && $scope.cbMod.val2 === true) {
         $scope.selectCur(0, 1);
       }
       else if ($scope.cbMod.val1) {

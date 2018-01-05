@@ -36,13 +36,16 @@
     <script src="lib/angular-chart.js/dist/angular-chart.min.js"></script>
     <link rel="stylesheet" href="lib/preloader.css3/dist/preloader.css">
     <script src="lib/preloader.css3/dist/preloader.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="//rawgithub.com/darthwade/angular-loading/master/angular-loading.css"/>
   </head>
   <body ng-app="starter">
   <script>preloaderCSS3("Loading application... Please wait");</script>
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">Ionic Chart Application</h1>
       </ion-header-bar>
       <ion-content ng-controller="LineCtrl">
         <label>CAD
@@ -70,6 +73,10 @@
         </span><span>
         <button class="button" ng-click="getMonthRate()">Last month</button>
         </span>
+        <span><img id="mySpinner" src="img/spinner.gif" ng-show="loading" /></span>
+        <span>
+            <button class="button" ng-click="stopLoading()">Stop</button>
+            </span>
 
       </ion-content>
     </ion-pane>
