@@ -7,13 +7,10 @@ angular.module('starter', ['ionic',
   'chart.js'
 ])
   .controller("LineCtrl",['$scope', '$http', function ($scope, $http) {
+
     //http://codetunnel.io/how-to-do-loading-spinners-the-angular-way/
-
-
-
-    $scope.stopLoading = function () {
-      $scope.loading = false;
-    };
+    //https://github.com/yarkovaleksei/preloader.css3
+    //http://jtblin.github.io/angular-chart.js/
 
   $scope.users = [];
   $scope.filterArr = [];
